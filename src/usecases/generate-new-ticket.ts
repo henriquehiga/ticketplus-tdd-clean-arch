@@ -6,7 +6,9 @@ import { Either, right } from "@/shared/either";
 export class GenerateNewTicket {
   public execute(id: string, payload: TicketPayload): Either<void, Ticket> {
     const authCode = AuthenticationService.generate(payload);
-    const ticket = new Ticket(id, authCode, payload);
-    return right(ticket);
+    const ticketOrError = Ticket.create(id, authCode, payload);
+    if (ticketOrError.isRight()) {
+      return right(ticketOrError.value);
+    }
   }
 }
