@@ -11,7 +11,10 @@ export class Ticket {
   private constructor(id: string, authCode: string, payload: TicketPayload) {
     this.id = id;
     this.authCode = authCode;
-    this.payload = payload;
+    this.payload = {
+      ...payload,
+      usado: false,
+    };
   }
 
   static create(
