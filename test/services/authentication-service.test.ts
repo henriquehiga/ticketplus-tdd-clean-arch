@@ -7,6 +7,7 @@ describe("Authentication service", () => {
       documento: "RG/12345678-X",
       nome: "Cliente Um",
       validade: "2023-12-25T19:00:000.00Z",
+      usado: false,
     };
     const authService = AuthenticationService;
     const authCode = authService.generate(payload);
