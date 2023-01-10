@@ -1,3 +1,6 @@
+import { Either, left, right } from "@/shared/either";
+import { Document } from "./document";
+import { InvalidDocumentError } from "./errors/invalid-document-error";
 import { TicketPayload } from "./ports/ticket-payload";
 
 export class Ticket {
@@ -11,9 +14,18 @@ export class Ticket {
     this.payload = payload;
   }
 
-  static create(id: string, authCode: string, payload: TicketPayload) {
-    const ticket = new Ticket(id, authCode, payload);
-    return ticket;
+  static create(
+    id: string,
+    authCode: string,
+    payload: TicketPayload
+  ): Either<InvalidDocumentError, Ticket> {
+    const documentoOrError = Document.create(payload.documento);
+    if (documentoOrError.isRight()) {
+      const ticket = new Ticket(id, authCode, payload);
+      return right(ticket);
+    } else {
+      return left(documentoOrError.value);
+    }
   }
 
   public getId(): string {
