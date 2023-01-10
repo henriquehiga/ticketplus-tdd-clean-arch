@@ -9,7 +9,7 @@ describe("Ticket entity", () => {
       documento: "RG/12345678-X",
       validade: new Date().toISOString(),
     };
-    const ticket = new Ticket(id, authCode, payload);
+    const ticket = Ticket.create(id, authCode, payload);
     expect(ticket.getId()).toBe(id);
     expect(ticket.getAuthCode()).toBe(authCode);
     expect(ticket.getPayload()).toEqual(payload);
@@ -23,7 +23,7 @@ describe("Ticket entity", () => {
       documento: "RG/12345678-X",
       validade: new Date().toISOString(),
     };
-    const ticket = new Ticket(id, authCode, payload);
+    const ticket = Ticket.create(id, authCode, payload);
     const expectedJson = {
       id: id,
       authCode: authCode,
