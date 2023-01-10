@@ -1,7 +1,7 @@
 import { UuidService } from "@/services/uuid-service";
 
 describe("Uuid Service", () => {
-  test("deve testar metodo que gera UUID", () => {
+  test("deve gerar uuid no metodo generate", () => {
     const uuidGerado = UuidService.generate();
     expect(uuidGerado).not.toBeNull();
   });
