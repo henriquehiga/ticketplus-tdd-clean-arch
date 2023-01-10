@@ -5,10 +5,15 @@ export class Ticket {
   private authCode: string;
   private payload: TicketPayload;
 
-  constructor(id: string, authCode: string, payload: TicketPayload) {
+  private constructor(id: string, authCode: string, payload: TicketPayload) {
     this.id = id;
     this.authCode = authCode;
     this.payload = payload;
+  }
+
+  static create(id: string, authCode: string, payload: TicketPayload) {
+    const ticket = new Ticket(id, authCode, payload);
+    return ticket;
   }
 
   public getId(): string {
