@@ -3,14 +3,14 @@ import { ValidateTicket } from "@/usecases/validate-ticket";
 describe("ValidateTicketUseCase", () => {
   test("deve retornar true caso o ticket seja válido", async () => {
     const ticket = {
-      id: "a59a423c-d007-4acf-ba28-4b46e361f47f",
-      authCode: "$2b$10$eiLp7fuELQ0AuvR4VyKDbOqk3bdJkHcweglo8DG15n1qe5OQTRRZS",
+      id: 'bf052985-9489-4801-b3f6-a27f5ffd8bd1',
+      authCode: 'U2FsdGVkX1+ff3ZTbhnxRh8aqqk3HRPxRwbKIN3WPWykn3/ja7WoGIP9Bukys3kPHqxHzvK9z/11CjOgZ9Pi+K+WFlwD39EK7JadUGPX3gqnl50cLsA6/u3R59LTQMPk2ilYab0bvKze0yNpiEgduqwQMJuDhpgbHJvewiCGzkw=',
       payload: {
-        documento: "RG/12345678-X",
-        nome: "Cliente Um",
-        validade: "2023-12-25T19:00:00.000Z",
-        usado: false,
-      },
+        documento: 'RG/12345678-X',
+        nome: 'Cliente Um',
+        validade: '2023-12-25T19:00:00.000Z',
+        usado: false
+      }
     };
     const validateTicketUseCase = new ValidateTicket();
     const valido = (await validateTicketUseCase.execute(ticket)).value;
@@ -19,14 +19,14 @@ describe("ValidateTicketUseCase", () => {
 
   test("deve retornar erro de UsedTicketError caso o ticket tenha sido utilizado", async () => {
     const ticket = {
-      id: "a59a423c-d007-4acf-ba28-4b46e361f47f",
-      authCode: "$2b$10$eiLp7fuELQ0AuvR4VyKDbOqk3bdJkHcweglo8DG15n1qe5OQTRRZS",
+      id: 'bf052985-9489-4801-b3f6-a27f5ffd8bd1',
+      authCode: 'U2FsdGVkX1+ff3ZTbhnxRh8aqqk3HRPxRwbKIN3WPWykn3/ja7WoGIP9Bukys3kPHqxHzvK9z/11CjOgZ9Pi+K+WFlwD39EK7JadUGPX3gqnl50cLsA6/u3R59LTQMPk2ilYab0bvKze0yNpiEgduqwQMJuDhpgbHJvewiCGzkw=',
       payload: {
-        documento: "RG/12345678-X",
-        nome: "Cliente Um",
-        validade: "2023-12-25T19:00:00.000Z",
-        usado: true,
-      },
+        documento: 'RG/12345678-X',
+        nome: 'Cliente Um',
+        validade: '2023-12-25T19:00:00.000Z',
+        usado: true
+      }
     };
     const validateTicketUseCase = new ValidateTicket();
     const erro = (await validateTicketUseCase.execute(ticket)).value as Error;
@@ -36,14 +36,14 @@ describe("ValidateTicketUseCase", () => {
 
   test("deve retornar erro de ExpiredTicketError caso a validade do ticket tenha acabado", async () => {
     const ticket = {
-      id: "a59a423c-d007-4acf-ba28-4b46e361f47f",
-      authCode: "$2b$10$eiLp7fuELQ0AuvR4VyKDbOqk3bdJkHcweglo8DG15n1qe5OQTRRZS",
+      id: 'bf052985-9489-4801-b3f6-a27f5ffd8bd1',
+      authCode: 'U2FsdGVkX1+ff3ZTbhnxRh8aqqk3HRPxRwbKIN3WPWykn3/ja7WoGIP9Bukys3kPHqxHzvK9z/11CjOgZ9Pi+K+WFlwD39EK7JadUGPX3gqnl50cLsA6/u3R59LTQMPk2ilYab0bvKze0yNpiEgduqwQMJuDhpgbHJvewiCGzkw=',
       payload: {
-        documento: "RG/12345678-X",
-        nome: "Cliente Um",
-        validade: "2022-12-25T19:00:00.000Z",
-        usado: false,
-      },
+        documento: 'RG/12345678-X',
+        nome: 'Cliente Um',
+        validade: '2022-12-25T19:00:00.000Z',
+        usado: false
+      }
     };
     const validateTicketUseCase = new ValidateTicket();
     const erro = (await validateTicketUseCase.execute(ticket)).value as Error;
@@ -53,14 +53,14 @@ describe("ValidateTicketUseCase", () => {
 
   test("deve retornar erro de UnauthorizedTicketError caso o ticket não seja autenticado", async () => {
     const ticket = {
-      id: "a59a423c-d007-4acf-ba28-4b46e361f47f",
-      authCode: "invalid-auth-code",
+      id: 'bf052985-9489-4801-b3f6-a27f5ffd8bd1',
+      authCode: 'invalid-auth-code',
       payload: {
-        documento: "RG/12345678-X",
-        nome: "Cliente Um",
-        validade: "2023-12-25T19:00:00.000Z",
-        usado: false,
-      },
+        documento: 'RG/12345678-X',
+        nome: 'Cliente Um',
+        validade: '2023-12-25T19:00:00.000Z',
+        usado: false
+      }
     };
     const validateTicketUseCase = new ValidateTicket();
     const erro = (await validateTicketUseCase.execute(ticket)).value as Error;
