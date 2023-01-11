@@ -20,4 +20,22 @@ describe("InMemoryTicketRepository", () => {
     expect(tickets).toContain(data);
     expect(tickets.length).toBe(1);
   })
+
+  test("deve recuperar um ticket pelo id", async () => {
+    const data : Ticket = {
+      id : "123",
+      authCode : "abc-123",
+      payload : {
+        nome : "Cliente Um",
+        documento : "RG/12345678-X",
+        usado: false,
+        validade : "2023-08-16T19:00:00.000Z"
+      }
+    }
+    const tickets : Ticket[] = [];
+    const inMemoryTicketRepository = new InMemoryTicketRepository(tickets);
+    await inMemoryTicketRepository.save(data);
+    const ticketFromRepository = await inMemoryTicketRepository.getById("123");
+    expect(ticketFromRepository).toEqual(data);
+  })
 })
