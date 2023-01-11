@@ -8,7 +8,7 @@ export class GenerateNewTicket {
     id: string,
     payload: TicketPayload
   ): Promise<Either<void, Ticket>> {
-    const authCode = (await AuthenticationService.generate(payload)).toString();
+    const authCode = AuthenticationService.generate(payload);
     const ticketOrError = Ticket.create(id, authCode, payload);
     if (ticketOrError.isRight()) {
       return right(ticketOrError.value);
