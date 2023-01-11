@@ -1,4 +1,4 @@
-import { Ticket } from "@/entities/ticket";
+import { Ticket } from "@/domain/entities/ticket";
 
 describe("Ticket entity", () => {
   test("deve retornar valores corretos no get", () => {

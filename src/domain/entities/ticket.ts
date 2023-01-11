@@ -1,7 +1,7 @@
-import { Either, left, right } from "@/shared/either";
+import { TicketPayload } from "@/application/dto/ticket-payload";
+import { Either, left, right } from "@/application/shared/either";
 import { Document } from "./document";
 import { InvalidDocumentError } from "./errors/invalid-document-error";
-import { TicketPayload } from "./ports/ticket-payload";
 
 export class Ticket {
   private id: string;

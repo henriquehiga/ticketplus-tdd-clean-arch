@@ -1,5 +1,5 @@
-import { AuthenticationService } from "@/services/authentication-service";
-import { Either, left, right } from "@/shared/either";
+import { AuthenticationService } from "../services/authentication-service";
+import { Either, left, right } from "../shared/either";
 import { ExpiredTicketError } from "./errors/validate-ticket/expired-ticket-error";
 import { UnauthorizedTicketError } from "./errors/validate-ticket/unauthorized-ticket-error";
 import { UsedTicketError } from "./errors/validate-ticket/used-ticket-error";

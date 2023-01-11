@@ -1,7 +1,7 @@
-import { TicketPayload } from "@/entities/ports/ticket-payload";
-import { Ticket } from "@/entities/ticket";
-import { AuthenticationService } from "@/services/authentication-service";
-import { Either, right } from "@/shared/either";
+import { Ticket } from "@/domain/entities/ticket";
+import { TicketPayload } from "../dto/ticket-payload";
+import { AuthenticationService } from "../services/authentication-service";
+import { Either, right } from "../shared/either";
 
 export class GenerateNewTicket {
   public async execute(

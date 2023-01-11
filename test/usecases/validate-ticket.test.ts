@@ -1,4 +1,4 @@
-import { ValidateTicket } from "@/usecases/validate-ticket";
+import { ValidateTicket } from "@/application/usecases/validate-ticket";
 
 describe("ValidateTicketUseCase", () => {
   test("deve retornar true caso o ticket seja válido", async () => {

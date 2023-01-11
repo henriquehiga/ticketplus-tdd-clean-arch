@@ -1,8 +1,8 @@
-import { TicketPayload } from "@/entities/ports/ticket-payload";
-import { Ticket } from "@/entities/ticket";
-import { AuthenticationService } from "@/services/authentication-service";
-import { UuidService } from "@/services/uuid-service";
-import { GenerateNewTicket } from "@/usecases/generate-new-ticket";
+import { TicketPayload } from "@/application/dto/ticket-payload";
+import { AuthenticationService } from "@/application/services/authentication-service";
+import { UuidService } from "@/application/services/uuid-service";
+import { GenerateNewTicket } from "@/application/usecases/generate-new-ticket";
+import { Ticket } from "@/domain/entities/ticket";
 
 describe("GenerateNewTicketUseCase", () => {
   test("deve gerar um ticket integro e único no sistema", async () => {

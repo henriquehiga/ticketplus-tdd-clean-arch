@@ -1,4 +1,4 @@
-import { UuidService } from "@/services/uuid-service";
+import { UuidService } from "@/application/services/uuid-service";
 
 describe("Uuid Service", () => {
   test("deve gerar uuid no metodo generate", () => {

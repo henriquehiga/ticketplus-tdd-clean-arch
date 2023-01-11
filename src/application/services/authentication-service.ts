@@ -1,4 +1,4 @@
-import { TicketPayload } from "@/entities/ports/ticket-payload";
+import { TicketPayload } from "../dto/ticket-payload";
 import { EncryptHashService } from "./encrypt-hash-service";
 
 export class AuthenticationService {

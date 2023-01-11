@@ -1,6 +1,6 @@
-import { TicketPayload } from "@/entities/ports/ticket-payload";
 import * as CryptoJS from "crypto-js";
 import { config } from "dotenv";
+import { TicketPayload } from "../dto/ticket-payload";
 config();
 
 export class EncryptHashService {
