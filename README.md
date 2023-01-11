@@ -1,4 +1,4 @@
-# Event Ticketing Project
+# Ticket+ Project
 
 Este projeto tem como objetivo criar e validar tickets para eventos. Ele foi desenvolvido usando TDD (Test-Driven Development) e a arquitetura limpa, garantindo assim alta qualidade e manutenabilidade do código. Além disso, foi utilizado TypeScript em conjunto com o Jest para a escrita dos testes.
 
