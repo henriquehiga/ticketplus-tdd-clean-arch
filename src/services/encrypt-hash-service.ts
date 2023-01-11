@@ -5,7 +5,8 @@ config();
 
 export class EncryptHashService {
   static generate(payload: string) {
-    const encrypt = CryptoJS.AES.encrypt(payload, process.env.PASSPHRASE);
+    const encrypt = CryptoJS.AES.encrypt(payload, process.env.PASSPHRASE).toString();
+    console.log(encrypt)
     return encrypt;
   }
 
@@ -13,10 +14,8 @@ export class EncryptHashService {
     const decrypt = CryptoJS.AES.decrypt(
       authCode,
       process.env.PASSPHRASE
-    ).toString();
-    if (JSON.parse(decrypt).nome == payload.nome) {
-      return true;
-    }
-    return false;
+    ).toString(CryptoJS.enc.Utf8);
+    const decryptedPayload = JSON.parse(decrypt);
+    return decryptedPayload.nome === payload.nome;
   }
 }
