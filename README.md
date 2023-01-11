@@ -13,4 +13,6 @@ A arquitetura adotada é a Clean Architecture, que segue os princípios de separ
 
 As funcionalidades incluem: criação de ingressos para eventos, validação de ingressos para entrada em eventos, sistema de autenticação e autorização para garantir segurança e histórico de ingressos criados e validados. As tecnologias utilizadas no projeto são TypeScript como linguagem de programação, Express como framework web, MongoDB como banco de dados e Jest como biblioteca de testes.
 
-Para instalar o projeto, é necessário clonar o repositório, instalar as dependências usando npm e configurar as variáveis de ambiente usando Passphrase. Para executar os testes, use o comando npm run test.
+
+### Executar o projeto
+Para instalar o projeto, é necessário clonar o repositório, instalar as dependências usando npm e configurar as variáveis de ambiente usando `PASSPHRASE`. Para executar os testes, use o comando npm run test.
