@@ -12,7 +12,6 @@ export class GenerateNewTicket {
     const authCode = AuthenticationService.generate(payload);
     const ticketOrError = Ticket.create(id, authCode, payload);
     if (ticketOrError.isRight()) {
-      console.log(ticketOrError.value)
       return right(ticketOrError.value);
     }
   }
