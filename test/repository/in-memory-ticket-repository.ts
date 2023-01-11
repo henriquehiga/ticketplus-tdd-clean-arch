@@ -10,7 +10,7 @@ export class InMemoryTicketRepository implements TicketRepository {
   }
 
   async getById(id: string): Promise<Ticket | null> {
-    return await this.tickets.find(ticket => ticket.id === id);
+    return await this.tickets.find(ticket => ticket.id === id ? ticket : null);
   }
 
   async save(data : Ticket): Promise<void> {
