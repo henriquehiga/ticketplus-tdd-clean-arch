@@ -3,8 +3,8 @@ import { ValidateTicket } from "@/usecases/validate-ticket";
 describe("ValidateTicketUseCase", () => {
   test("deve retornar true caso o ticket seja válido", async () => {
     const ticket = {
-      id: "845cefe0-8d65-4949-ab79-dce2c8515aaa",
-      authCode: "$2b$10$eFM5pdX5qFhd4E9QqS9eQO9svLD8J56NWaVcDyjaBWD448DtYwmjy",
+      id: "a59a423c-d007-4acf-ba28-4b46e361f47f",
+      authCode: "$2b$10$eiLp7fuELQ0AuvR4VyKDbOqk3bdJkHcweglo8DG15n1qe5OQTRRZS",
       payload: {
         documento: "RG/12345678-X",
         nome: "Cliente Um",
@@ -19,8 +19,8 @@ describe("ValidateTicketUseCase", () => {
 
   test("deve retornar erro de UsedTicketError caso o ticket tenha sido utilizado", async () => {
     const ticket = {
-      id: "845cefe0-8d65-4949-ab79-dce2c8515aaa",
-      authCode: "$2b$10$eFM5pdX5qFhd4E9QqS9eQO9svLD8J56NWaVcDyjaBWD448DtYwmjy",
+      id: "a59a423c-d007-4acf-ba28-4b46e361f47f",
+      authCode: "$2b$10$eiLp7fuELQ0AuvR4VyKDbOqk3bdJkHcweglo8DG15n1qe5OQTRRZS",
       payload: {
         documento: "RG/12345678-X",
         nome: "Cliente Um",
@@ -36,8 +36,8 @@ describe("ValidateTicketUseCase", () => {
 
   test("deve retornar erro de ExpiredTicketError caso a validade do ticket tenha acabado", async () => {
     const ticket = {
-      id: "845cefe0-8d65-4949-ab79-dce2c8515aaa",
-      authCode: "$2b$10$eFM5pdX5qFhd4E9QqS9eQO9svLD8J56NWaVcDyjaBWD448DtYwmjy",
+      id: "a59a423c-d007-4acf-ba28-4b46e361f47f",
+      authCode: "$2b$10$eiLp7fuELQ0AuvR4VyKDbOqk3bdJkHcweglo8DG15n1qe5OQTRRZS",
       payload: {
         documento: "RG/12345678-X",
         nome: "Cliente Um",
@@ -53,7 +53,7 @@ describe("ValidateTicketUseCase", () => {
 
   test("deve retornar erro de UnauthorizedTicketError caso o ticket não seja autenticado", async () => {
     const ticket = {
-      id: "845cefe0-8d65-4949-ab79-dce2c8515aaa",
+      id: "a59a423c-d007-4acf-ba28-4b46e361f47f",
       authCode: "invalid-auth-code",
       payload: {
         documento: "RG/12345678-X",
