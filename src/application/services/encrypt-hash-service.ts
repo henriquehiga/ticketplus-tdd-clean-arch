@@ -1,19 +1,19 @@
-import * as CryptoJS from "crypto-js";
+import { cryptojs } from "@/libs/cryptojs";
 import { config } from "dotenv";
 import { TicketPayload } from "../dto/ticket-payload";
 config();
 
 export class EncryptHashService {
   static generate(payload: string) {
-    const encrypt = CryptoJS.AES.encrypt(payload, process.env.PASSPHRASE).toString();
+    const encrypt = cryptojs.AES.encrypt(payload, process.env.PASSPHRASE).toString();
     return encrypt;
   }
 
   static isValid(authCode: string, payload: TicketPayload) {
-    const decrypt = CryptoJS.AES.decrypt(
+    const decrypt = cryptojs.AES.decrypt(
       authCode,
       process.env.PASSPHRASE
-    ).toString(CryptoJS.enc.Utf8);
+    ).toString(cryptojs.enc.Utf8);
     try {
       const decryptedPayload = JSON.parse(decrypt);
       return decryptedPayload.nome === payload.nome;

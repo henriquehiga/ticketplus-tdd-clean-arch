@@ -1,4 +1,4 @@
-import * as uuid from "uuid";
+import { uuid } from "@/libs/uuid";
 
 export class UuidService {
   static generate() {
