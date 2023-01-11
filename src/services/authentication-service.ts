@@ -4,11 +4,10 @@ import { EncryptHashService } from "./encrypt-hash-service";
 export class AuthenticationService {
   static generate(payload: TicketPayload) {
     const payloadAsStringJson = JSON.stringify(payload);
-    return EncryptHashService.generate(payloadAsStringJson);
+    return EncryptHashService.generate(payloadAsStringJson).toString();
   }
 
   static isValid(authCode: string, payload: TicketPayload) {
-    const payloadAsStringJson = JSON.stringify(payload);
-    return EncryptHashService.isValid(authCode, payloadAsStringJson);
+    return EncryptHashService.isValid(authCode, payload);
   }
 }

@@ -1,16 +1,22 @@
-import bcrypt from "bcrypt";
+import { TicketPayload } from "@/entities/ports/ticket-payload";
+import * as CryptoJS from "crypto-js";
 import { config } from "dotenv";
 config();
 
 export class EncryptHashService {
   static generate(payload: string) {
-    const salt = bcrypt.genSaltSync(10);
-    payload = process.env.PASSPHRASE + payload;
-    return bcrypt.hashSync(payload, salt);
+    const encrypt = CryptoJS.AES.encrypt(payload, process.env.PASSPHRASE);
+    return encrypt;
   }
 
-  static isValid(authCode: string, payload: string) {
-    payload = process.env.PASSPHRASE + payload;
-    return bcrypt.compareSync(payload, authCode);
+  static isValid(authCode: string, payload: TicketPayload) {
+    const decrypt = CryptoJS.AES.decrypt(
+      authCode,
+      process.env.PASSPHRASE
+    ).toString();
+    if (JSON.parse(decrypt).nome == payload.nome) {
+      return true;
+    }
+    return false;
   }
 }

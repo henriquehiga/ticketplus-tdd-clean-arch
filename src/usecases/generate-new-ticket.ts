@@ -4,8 +4,11 @@ import { AuthenticationService } from "@/services/authentication-service";
 import { Either, right } from "@/shared/either";
 
 export class GenerateNewTicket {
-  public execute(id: string, payload: TicketPayload): Either<void, Ticket> {
-    const authCode = AuthenticationService.generate(payload);
+  public async execute(
+    id: string,
+    payload: TicketPayload
+  ): Promise<Either<void, Ticket>> {
+    const authCode = (await AuthenticationService.generate(payload)).toString();
     const ticketOrError = Ticket.create(id, authCode, payload);
     if (ticketOrError.isRight()) {
       return right(ticketOrError.value);
