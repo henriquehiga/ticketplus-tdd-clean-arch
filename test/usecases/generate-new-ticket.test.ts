@@ -16,16 +16,8 @@ describe("GenerateNewTicketUseCase", () => {
     const generateNewTicketUseCase = new GenerateNewTicket();
     const ticket = (await generateNewTicketUseCase.execute(id, payload))
       .value as Ticket;
-<<<<<<< HEAD
     console.log(ticket);
-    const ticketIsValid = AuthenticationService.isValid(ticket.getAuthCode());
-=======
-    console.log(ticket.toJson());
-    const ticketIsValid = AuthenticationService.isValid(
-      ticket.getAuthCode(),
-      ticket.getPayload()
-    );
->>>>>>> 1a89fa40478db4e74d7d6dba26ced07a1ff18c2b
+    const ticketIsValid = AuthenticationService.isValid(ticket.getAuthCode(), ticket.getPayload());
     expect(ticketIsValid).toBeTruthy();
   });
 });

@@ -27,7 +27,7 @@ export class ValidateTicket {
     if (timestampAtual > timestampValidadeTicket) {
       return left(new ExpiredTicketError(ticket.id));
     }
-    let authCodeIsValid = await AuthenticationService.isValid(ticket.authCode);
+    let authCodeIsValid = AuthenticationService.isValid(ticket.authCode, ticket.payload);
     if (!authCodeIsValid) {
       return left(new UnauthorizedTicketError(ticket.id));
     }
