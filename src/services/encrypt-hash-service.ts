@@ -15,7 +15,11 @@ export class EncryptHashService {
       authCode,
       process.env.PASSPHRASE
     ).toString(CryptoJS.enc.Utf8);
-    const decryptedPayload = JSON.parse(decrypt);
-    return decryptedPayload.nome === payload.nome;
+    try {
+      const decryptedPayload = JSON.parse(decrypt);
+      return decryptedPayload.nome === payload.nome;
+    } catch(e) {
+      return false;
+    }
   }
 }
