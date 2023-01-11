@@ -5,7 +5,7 @@ import { UuidService } from "@/services/uuid-service";
 import { GenerateNewTicket } from "@/usecases/generate-new-ticket";
 
 describe("GenerateNewTicketUseCase", () => {
-  test("deve gerar um ticket integro e único no sistema", () => {
+  test("deve gerar um ticket integro e único no sistema", async () => {
     const id = UuidService.generate();
     const payload: TicketPayload = {
       documento: "RG/12345678-X",
@@ -14,12 +14,10 @@ describe("GenerateNewTicketUseCase", () => {
       usado: false,
     };
     const generateNewTicketUseCase = new GenerateNewTicket();
-    const ticket = generateNewTicketUseCase.execute(id, payload)
+    const ticket = (await generateNewTicketUseCase.execute(id, payload))
       .value as Ticket;
-    const ticketIsValid = AuthenticationService.isValid(
-      ticket.getAuthCode(),
-      ticket.getPayload()
-    );
+    console.log(ticket);
+    const ticketIsValid = AuthenticationService.isValid(ticket.getAuthCode());
     expect(ticketIsValid).toBeTruthy();
   });
 });
