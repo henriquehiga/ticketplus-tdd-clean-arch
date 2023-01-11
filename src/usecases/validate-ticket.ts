@@ -1,5 +1,7 @@
+import { AuthenticationService } from "@/services/authentication-service";
 import { Either, left, right } from "@/shared/either";
 import { ExpiredTicketError } from "./errors/validate-ticket/expired-ticket-error";
+import { UnauthorizedTicketError } from "./errors/validate-ticket/unauthorized-ticket-error";
 import { UsedTicketError } from "./errors/validate-ticket/used-ticket-error";
 
 interface ticketInterface {
@@ -24,6 +26,9 @@ export class ValidateTicket {
     let timestampValidadeTicket = new Date(ticket.payload.validade).getTime();
     if (timestampAtual > timestampValidadeTicket) {
       return left(new ExpiredTicketError(ticket.id));
+    }
+    if (!AuthenticationService.isValid(ticket.authCode, ticket.payload)) {
+      return left(new UnauthorizedTicketError(ticket.id));
     }
     return right(true);
   }
