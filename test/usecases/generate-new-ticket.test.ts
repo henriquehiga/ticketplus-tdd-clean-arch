@@ -14,6 +14,5 @@ describe("GenerateNewTicketUseCase", () => {
       .value as Ticket;
     const ticketIsValid = AuthenticationService.isValid(ticket.getAuthCode(), ticket.getPayload());
     expect(ticketIsValid).toBeTruthy();
-    console.log(ticket)
   });
 });
