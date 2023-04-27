@@ -8,11 +8,17 @@ describe("GenerateNewTicketUseCase", () => {
     const payload: NewTicketPayload = {
       documento: "RG/12345678-X",
       nome: "Cliente Um",
+      dados: {
+        evento: "EV-1",
+      },
     };
     const generateNewTicketUseCase = new GenerateNewTicket();
     const ticket = (await generateNewTicketUseCase.execute(payload))
       .value as Ticket;
-    const ticketIsValid = AuthenticationService.isValid(ticket.getAuthCode(), ticket.getPayload());
+    const ticketIsValid = AuthenticationService.isValid(
+      ticket.getAuthCode(),
+      ticket.getPayload()
+    );
     expect(ticketIsValid).toBeTruthy();
   });
 });

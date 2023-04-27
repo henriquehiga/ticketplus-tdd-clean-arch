@@ -3,4 +3,5 @@ export interface TicketPayload {
   documento: string;
   validade: string | null;
   usado: boolean | null;
+  dados: any;
 }
