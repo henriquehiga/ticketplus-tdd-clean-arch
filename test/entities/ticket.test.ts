@@ -1,4 +1,5 @@
-import { Ticket } from "@/domain/entities/ticket";
+import { ITicket } from "../../src/application/dto/ticket";
+import { Ticket } from "./../../src/domain/entities/ticket";
 
 describe("Ticket entity", () => {
   test("deve retornar valores corretos no get", () => {
@@ -11,10 +12,10 @@ describe("Ticket entity", () => {
       usado: false,
       dados: null,
     };
-    const ticket = Ticket.create(id, authCode, payload).value as Ticket;
-    expect(ticket.getId()).toBe(id);
-    expect(ticket.getAuthCode()).toBe(authCode);
-    expect(ticket.getPayload()).toEqual(payload);
+    const ticket = Ticket.create(id, authCode, payload).value as ITicket;
+    expect(ticket.id).toBe(id);
+    expect(ticket.authCode).toBe(authCode);
+    expect(ticket.payload).toEqual(payload);
   });
 
   test("deve retornar JSON utilizando metodo toJson", () => {
@@ -27,12 +28,12 @@ describe("Ticket entity", () => {
       usado: false,
       dados: null,
     };
-    const ticket = Ticket.create(id, authCode, payload).value as Ticket;
+    const ticket = Ticket.create(id, authCode, payload).value as ITicket;
     const expectedJson = {
       id: id,
       authCode: authCode,
       payload: payload,
     };
-    expect(ticket.toJson()).toEqual(expectedJson);
+    expect(ticket).toEqual(expectedJson);
   });
 });

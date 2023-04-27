@@ -1,7 +1,8 @@
-import { NewTicketPayload } from "@/application/dto/new-ticket-payload";
-import { AuthenticationService } from "@/application/services/authentication-service";
-import { Ticket } from "@/domain/entities/ticket";
-import { GenerateNewTicket } from "@/domain/usecases/generate-new-ticket";
+import { ITicket } from "../../src/application/dto/ticket";
+import { AuthenticationService } from "../../src/application/services/authentication-service";
+import { InMemoryTicketRepository } from "../../test/repository/in-memory-ticket-repository";
+import { NewTicketPayload } from "./../../src/application/dto/new-ticket-payload";
+import { GenerateNewTicket } from "./../../src/domain/usecases/generate-new-ticket";
 
 describe("GenerateNewTicketUseCase", () => {
   test("deve gerar um ticket integro e único no sistema", async () => {
@@ -12,12 +13,13 @@ describe("GenerateNewTicketUseCase", () => {
         evento: "EV-1",
       },
     };
-    const generateNewTicketUseCase = new GenerateNewTicket();
+    const repository = new InMemoryTicketRepository([]);
+    const generateNewTicketUseCase = new GenerateNewTicket(repository);
     const ticket = (await generateNewTicketUseCase.execute(payload))
-      .value as Ticket;
+      .value as ITicket;
     const ticketIsValid = AuthenticationService.isValid(
-      ticket.getAuthCode(),
-      ticket.getPayload()
+      ticket.authCode,
+      ticket.payload
     );
     expect(ticketIsValid).toBeTruthy();
   });

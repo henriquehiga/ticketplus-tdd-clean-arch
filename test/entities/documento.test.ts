@@ -1,4 +1,4 @@
-import { Document } from "@/domain/entities/document";
+import { Document } from "./../../src/domain/entities/document";
 
 describe("Documento entity", () => {
   test("deve criar novo documento válido", () => {

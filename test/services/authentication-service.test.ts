@@ -1,5 +1,5 @@
-import { TicketPayload } from "@/application/dto/ticket-payload";
-import { AuthenticationService } from "@/application/services/authentication-service";
+import { TicketPayload } from "./../../src/application/dto/ticket-payload";
+import { AuthenticationService } from "./../../src/application/services/authentication-service";
 
 describe("Authentication service", () => {
   test("deve gerar um codigo de autenticação baseado no payload passado", () => {

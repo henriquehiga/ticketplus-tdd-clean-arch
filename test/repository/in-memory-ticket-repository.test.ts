@@ -1,9 +1,9 @@
-import { Ticket } from "@/application/dto/ticket";
+import { ITicket } from "../../src/application/dto/ticket";
 import { InMemoryTicketRepository } from "./in-memory-ticket-repository";
 
 describe("InMemoryTicketRepository", () => {
   test("deve salvar um ticket na base", async () => {
-    const data: Ticket = {
+    const data: ITicket = {
       id: "123",
       authCode: "abc-123",
       payload: {
@@ -14,16 +14,14 @@ describe("InMemoryTicketRepository", () => {
         dados: null,
       },
     };
-    const tickets: Ticket[] = [];
-    const inMemoryTicketRepository = new InMemoryTicketRepository(tickets);
+    const inMemoryTicketRepository = new InMemoryTicketRepository([]);
     await inMemoryTicketRepository.save(data);
-
-    expect(tickets).toContain(data);
-    expect(tickets.length).toBe(1);
+    const ticketFounded = await inMemoryTicketRepository.getById("123");
+    expect(ticketFounded).toEqual(data);
   });
 
   test("deve recuperar um ticket pelo id", async () => {
-    const data: Ticket = {
+    const data: ITicket = {
       id: "123",
       authCode: "abc-123",
       payload: {
@@ -34,7 +32,7 @@ describe("InMemoryTicketRepository", () => {
         dados: null,
       },
     };
-    const tickets: Ticket[] = [];
+    const tickets: ITicket[] = [];
     const inMemoryTicketRepository = new InMemoryTicketRepository(tickets);
     await inMemoryTicketRepository.save(data);
     const ticketFromRepository = await inMemoryTicketRepository.getById("123");
