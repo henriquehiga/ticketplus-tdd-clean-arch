@@ -15,7 +15,8 @@
     "typescript": "^4.9.4"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "dev": "ts-node src/application/app.ts"
   },
   "dependencies": {
     "crypto-js": "^4.1.1",
