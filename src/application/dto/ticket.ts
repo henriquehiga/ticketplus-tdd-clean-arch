@@ -1,7 +1,7 @@
 import { TicketPayload } from "./ticket-payload";
 
-export interface Ticket {
-  id : string;
-  authCode : string;
-  payload : TicketPayload;
+export interface ITicket {
+  id: string;
+  authCode: string;
+  payload: TicketPayload;
 }

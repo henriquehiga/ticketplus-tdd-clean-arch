@@ -1,14 +1,18 @@
-import { Ticket } from "@/domain/entities/ticket";
 import { NewTicketPayload } from "../../application/dto/new-ticket-payload";
+import { ITicket } from "../../application/dto/ticket";
 import { TicketPayload } from "../../application/dto/ticket-payload";
 import { AuthenticationService } from "../../application/services/authentication-service";
 import { UuidService } from "../../application/services/uuid-service";
-import { Either, right } from "../../application/shared/either";
+import { Either, left, right } from "../../application/shared/either";
+import { TicketRepository } from "../../data/ports/ticket-repository";
+import { Ticket } from "../entities/ticket";
 
 export class GenerateNewTicket {
+  constructor(private readonly ticketRepository: TicketRepository) {}
+
   public async execute(
     payload: NewTicketPayload
-  ): Promise<Either<void, Ticket>> {
+  ): Promise<Either<Error, ITicket>> {
     const id = UuidService.generate();
     const UM_ANO = 31_556_926_000;
     const DATA_ATUAL = new Date().getTime();
@@ -21,7 +25,9 @@ export class GenerateNewTicket {
     const authCode = AuthenticationService.generate(novoPayload);
     const ticketOrError = Ticket.create(id, authCode, novoPayload);
     if (ticketOrError.isRight()) {
+      this.ticketRepository.save(ticketOrError.value);
       return right(ticketOrError.value);
     }
+    return left(ticketOrError.value);
   }
 }

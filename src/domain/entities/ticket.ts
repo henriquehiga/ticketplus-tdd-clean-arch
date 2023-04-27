@@ -1,5 +1,6 @@
-import { TicketPayload } from "@/application/dto/ticket-payload";
-import { Either, left, right } from "@/application/shared/either";
+import { ITicket } from "../../application/dto/ticket";
+import { TicketPayload } from "../../application/dto/ticket-payload";
+import { Either, left, right } from "../../application/shared/either";
 import { Document } from "./document";
 import { InvalidDocumentError } from "./errors/invalid-document-error";
 
@@ -21,10 +22,14 @@ export class Ticket {
     id: string,
     authCode: string,
     payload: TicketPayload
-  ): Either<InvalidDocumentError, Ticket> {
+  ): Either<InvalidDocumentError, ITicket> {
     const documentoOrError = Document.create(payload.documento);
     if (documentoOrError.isRight()) {
-      const ticket = new Ticket(id, authCode, payload);
+      const ticket: ITicket = {
+        id,
+        authCode,
+        payload,
+      };
       return right(ticket);
     } else {
       return left(documentoOrError.value);

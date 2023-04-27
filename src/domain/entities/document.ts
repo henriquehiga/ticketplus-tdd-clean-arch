@@ -1,4 +1,4 @@
-import { Either, left, right } from "@/application/shared/either";
+import { Either, left, right } from "../../application/shared/either";
 import { InvalidDocumentError } from "./errors/invalid-document-error";
 import { valid } from "./validators/document-validator";
 

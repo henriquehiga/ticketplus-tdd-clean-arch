@@ -1,6 +1,6 @@
-import { Ticket } from "@/application/dto/ticket";
+import { ITicket } from "../../application/dto/ticket";
 
 export interface TicketRepository {
-  save(data : Ticket): Promise<void>;
-  getById(id:string): Promise<Ticket | null>
+  save(data: ITicket): Promise<void>;
+  getById(id: string): Promise<ITicket | null>;
 }
