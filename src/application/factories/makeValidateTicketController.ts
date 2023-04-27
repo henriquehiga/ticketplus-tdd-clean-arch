@@ -1,9 +1,8 @@
 import { ValidateTicket } from "../../domain/usecases/validate-ticket";
 import { ValidateTicketController } from "../../presentation/controllers/validate-ticket-controller";
-import { InMemoryTicketRepository } from "./../../../test/repository/in-memory-ticket-repository";
+import { inMemoryTicketRepo } from "../app";
 
 export const makeValidateTicketController = (): ValidateTicketController => {
-  const repository = new InMemoryTicketRepository([]);
-  const usecase = new ValidateTicket(repository);
+  const usecase = new ValidateTicket(inMemoryTicketRepo);
   return new ValidateTicketController(usecase);
 };

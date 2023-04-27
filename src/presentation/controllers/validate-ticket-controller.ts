@@ -6,8 +6,8 @@ import { Response } from "../protocols/response";
 export class ValidateTicketController implements Controller {
   constructor(private readonly validateTicket: ValidateTicket) {}
 
-  async handle(request: Request<string>): Promise<Response> {
-    const result = await this.validateTicket.execute(request.body);
+  async handle(request: Request<any>): Promise<Response> {
+    const result = await this.validateTicket.execute(request.body.id);
     if (result.isLeft()) {
       return {
         body: result.value,
@@ -18,7 +18,7 @@ export class ValidateTicketController implements Controller {
       body: {
         is_valid: result.value,
       },
-      statusCode: 201,
+      statusCode: 200,
     };
   }
 }

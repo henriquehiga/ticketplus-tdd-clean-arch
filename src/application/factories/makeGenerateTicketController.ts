@@ -1,9 +1,8 @@
 import { GenerateNewTicket } from "../../domain/usecases/generate-new-ticket";
 import { GenerateTicketController } from "../../presentation/controllers/generate-ticket-controller";
-import { InMemoryTicketRepository } from "./../../../test/repository/in-memory-ticket-repository";
+import { inMemoryTicketRepo } from "../app";
 
 export const makeGenerateTicketController = (): GenerateTicketController => {
-  const repository = new InMemoryTicketRepository([]);
-  const usecase = new GenerateNewTicket(repository);
+  const usecase = new GenerateNewTicket(inMemoryTicketRepo);
   return new GenerateTicketController(usecase);
 };
