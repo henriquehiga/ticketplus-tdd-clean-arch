@@ -1,6 +1,6 @@
 import { TicketRepository } from "@/data/ports/ticket-repository";
-import { AuthenticationService } from "../services/authentication-service";
-import { Either, left, right } from "../shared/either";
+import { AuthenticationService } from "../../application/services/authentication-service";
+import { Either, left, right } from "../../application/shared/either";
 import { ExpiredTicketError } from "./errors/validate-ticket/expired-ticket-error";
 import { TicketNotFoundError } from "./errors/validate-ticket/ticket-not-found";
 import { UnauthorizedTicketError } from "./errors/validate-ticket/unauthorized-ticket-error";

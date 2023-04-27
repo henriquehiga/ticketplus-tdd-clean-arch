@@ -1,7 +1,7 @@
 import { NewTicketPayload } from "@/application/dto/new-ticket-payload";
 import { AuthenticationService } from "@/application/services/authentication-service";
-import { GenerateNewTicket } from "@/application/usecases/generate-new-ticket";
 import { Ticket } from "@/domain/entities/ticket";
+import { GenerateNewTicket } from "@/domain/usecases/generate-new-ticket";
 
 describe("GenerateNewTicketUseCase", () => {
   test("deve gerar um ticket integro e único no sistema", async () => {
