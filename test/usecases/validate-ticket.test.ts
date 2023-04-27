@@ -1,6 +1,6 @@
 import { AuthenticationService } from "@/application/services/authentication-service";
 import { ValidateTicket } from "@/application/usecases/validate-ticket";
-import { TicketRepository } from "@/domain/ports/ticket-repository";
+import { TicketRepository } from "@/data/ports/ticket-repository";
 import { InMemoryTicketRepository } from "./../repository/in-memory-ticket-repository";
 
 describe("ValidateTicketUseCase", () => {

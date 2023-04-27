@@ -1,5 +1,5 @@
 import { Ticket } from "@/application/dto/ticket";
-import { TicketRepository } from "@/domain/ports/ticket-repository";
+import { TicketRepository } from "@/data/ports/ticket-repository";
 
 export class InMemoryTicketRepository implements TicketRepository {
   private tickets: Ticket[] = [];
