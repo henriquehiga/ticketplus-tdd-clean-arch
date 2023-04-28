@@ -24,11 +24,7 @@ export class ValidateTicket {
     this.ticketRepository = repository;
   }
 
-  async execute(
-    id: string
-  ): Promise<
-    Either<UsedTicketError | ExpiredTicketError | TicketNotFoundError, boolean>
-  > {
+  async execute(id: string): Promise<Either<Error, boolean>> {
     const ticket = await this.ticketRepository.getById(id);
     if (!ticket) {
       return left(new TicketNotFoundError(id));
