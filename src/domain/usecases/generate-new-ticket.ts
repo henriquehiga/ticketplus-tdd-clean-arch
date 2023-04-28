@@ -24,10 +24,10 @@ export class GenerateNewTicket {
     };
     const authCode = AuthenticationService.generate(novoPayload);
     const ticketOrError = Ticket.create(id, authCode, novoPayload);
-    if (ticketOrError.isRight()) {
-      this.ticketRepository.save(ticketOrError.value);
-      return right(ticketOrError.value);
+    if (ticketOrError.isLeft()) {
+      return left(ticketOrError.value);
     }
-    return left(ticketOrError.value);
+    this.ticketRepository.save(ticketOrError.value);
+    return right(ticketOrError.value);
   }
 }
