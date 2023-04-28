@@ -1,4 +1,4 @@
-import { Either, left } from "../../application/shared/either";
+import { Either, left, right } from "../../application/shared/either";
 import { TicketRepository } from "../../data/ports/ticket-repository";
 import { ValidateTicket } from "./validate-ticket";
 
@@ -8,12 +8,12 @@ export class UseTicket {
     private readonly validateTicketUsecase: ValidateTicket
   ) {}
 
-  async execute(id: string): Promise<Either<Error, void>> {
+  async execute(id: string): Promise<Either<Error, true>> {
     const boolOrError = await this.validateTicketUsecase.execute(id);
     if (boolOrError.isLeft()) {
       return left(boolOrError.value);
     }
     await this.ticketRepository.useTicket(id);
-    return;
+    return right(true);
   }
 }

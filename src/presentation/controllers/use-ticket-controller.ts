@@ -1,13 +1,13 @@
-import { ValidateTicket } from "../../domain/usecases/validate-ticket";
+import { UseTicket } from "../../domain/usecases/use-ticket";
 import { Controller } from "../protocols/controller";
 import { Request } from "../protocols/request";
 import { Response } from "../protocols/response";
 
-export class ValidateTicketController implements Controller {
-  constructor(private readonly validateTicket: ValidateTicket) {}
+export class UseTicketController implements Controller {
+  constructor(private readonly usecase: UseTicket) {}
 
   async handle(request: Request<any>): Promise<Response> {
-    const result = await this.validateTicket.execute(request.body.id);
+    const result = await this.usecase.execute(request.body.id);
     if (result.isLeft()) {
       return {
         body: {
@@ -19,7 +19,7 @@ export class ValidateTicketController implements Controller {
     }
     return {
       body: {
-        is_valid: result.value,
+        usado: result.value,
       },
       statusCode: 200,
     };

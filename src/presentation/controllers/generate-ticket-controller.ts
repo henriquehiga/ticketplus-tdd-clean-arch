@@ -11,7 +11,10 @@ export class GenerateTicketController implements Controller {
     const result = await this.generateTicketUsecase.execute(request.body);
     if (result.isLeft()) {
       return {
-        body: result.value,
+        body: {
+          error: result.value.name,
+          message: result.value.message,
+        },
         statusCode: 500,
       };
     }

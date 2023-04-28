@@ -12,9 +12,20 @@ export class InMemoryTicketRepository implements TicketRepository {
     const ticket = this.tickets.find((ticket) =>
       ticket.id === id ? ticket : null
     );
+    const payload = ticket.payload;
     const updatedPayloadTicket = {
-      ...ticket.payload,
+      ...payload,
+      usado: true,
     };
+    ticket.payload = updatedPayloadTicket;
+    const tempTickets: ITicket[] = [];
+    this.tickets.map((ticketInArray) => {
+      if (ticket.id != ticketInArray.id) {
+        tempTickets.push(ticketInArray);
+      }
+    });
+    tempTickets.push(ticket);
+    this.tickets = tempTickets;
   }
 
   async getById(id: string): Promise<ITicket | null> {
