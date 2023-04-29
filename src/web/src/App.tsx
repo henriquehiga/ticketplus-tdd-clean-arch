@@ -8,10 +8,12 @@ const App = () => {
     width: 320,
   };
 
-  const [result] = useState("No result");
+  const [result, setResult] = useState<string>("");
 
-  const handleScan = (result: any) => {
-    console.log(result);
+  const handleScan = (result: string | null) => {
+    if (result) {
+      setResult(result);
+    }
   };
 
   const handleError = (error: any) => {
