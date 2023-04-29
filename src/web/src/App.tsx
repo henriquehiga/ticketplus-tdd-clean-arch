@@ -14,9 +14,12 @@ const App = () => {
     if (result) {
       alert(result.data);
       try {
-        const data = await axios.post("http://localhost:3035/use-ticket", {
-          id: result.data,
-        });
+        const data = await axios.post(
+          "https://ticketplus-api.henriquehiga.com/use-ticket",
+          {
+            id: result.data,
+          }
+        );
         if (data.data.statusCode > 200) {
           alert(data.data.message);
         } else {
