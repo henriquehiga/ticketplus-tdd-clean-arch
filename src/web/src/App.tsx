@@ -11,13 +11,14 @@ const App = () => {
   const [result, setResult] = useState<string>("");
 
   const handleScan = (result: string | null) => {
+    alert(result);
     if (result) {
       setResult(result);
     }
   };
 
   const handleError = (error: any) => {
-    console.log(error);
+    alert(error);
   };
 
   return (
