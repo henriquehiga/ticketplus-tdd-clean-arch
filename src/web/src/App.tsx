@@ -8,7 +8,7 @@ const App = () => {
     width: 320,
   };
 
-  const [result, setResult] = useState("No result");
+  const [result] = useState("No result");
 
   const handleScan = (result: any) => {
     console.log(result);
