@@ -11,7 +11,8 @@ const App = () => {
   const [result, setResult] = useState<any>(null);
 
   const handleScan = (result: any) => {
-    if (result.data) {
+    if (result) {
+      alert(result.data);
       setResult(result.data);
     }
   };
