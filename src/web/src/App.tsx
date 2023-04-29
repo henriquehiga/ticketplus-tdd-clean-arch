@@ -8,7 +8,7 @@ const App = () => {
     height: 240,
     width: 320,
   };
-  const [result, setResult] = useState<any>(null);
+  const [result] = useState<any>(null);
 
   const handleScan = async (result: any) => {
     if (result) {
