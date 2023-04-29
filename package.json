@@ -17,7 +17,8 @@
   },
   "scripts": {
     "test": "jest",
-    "dev": "ts-node src/application/app.ts"
+    "dev": "ts-node src/application/app.ts",
+    "start": "npx tsc && node dist/src/application/app.js"
   },
   "dependencies": {
     "crypto-js": "^4.1.1",
