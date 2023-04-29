@@ -1,3 +1,4 @@
+import QR from "qrcode";
 import { NewTicketPayload } from "../../application/dto/new-ticket-payload";
 import { ITicket } from "../../application/dto/ticket";
 import { TicketPayload } from "../../application/dto/ticket-payload";
@@ -28,6 +29,7 @@ export class GenerateNewTicket {
       return left(ticketOrError.value);
     }
     this.ticketRepository.save(ticketOrError.value);
+    await QR.toFile("./qr-code.png", ticketOrError.value.id);
     return right(ticketOrError.value);
   }
 }

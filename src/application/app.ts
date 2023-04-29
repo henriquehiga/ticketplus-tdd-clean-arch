@@ -9,6 +9,6 @@ export const inMemoryTicketRepo = new InMemoryTicketRepository([]);
 
 configRoutes(app);
 
-app.listen(3035, () => {
+app.listen(3030, () => {
   console.log("On!");
 });
