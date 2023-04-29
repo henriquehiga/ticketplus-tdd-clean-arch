@@ -8,12 +8,11 @@ const App = () => {
     width: 320,
   };
 
-  const [result, setResult] = useState<string>("");
+  const [result, setResult] = useState<any>(null);
 
-  const handleScan = (result: string | null) => {
-    alert(JSON.stringify(result));
-    if (result) {
-      setResult(JSON.stringify(result));
+  const handleScan = (result: any) => {
+    if (result.data) {
+      setResult(result.data);
     }
   };
 
