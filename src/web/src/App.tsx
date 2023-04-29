@@ -12,7 +12,6 @@ const App = () => {
 
   const handleScan = async (result: any) => {
     if (result) {
-      alert(result.data);
       try {
         const data = await axios.post(
           "https://ticketplus-api.henriquehiga.com/use-ticket",
